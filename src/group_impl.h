@@ -205,18 +205,6 @@ static void secp256k1_gej_set_infinity(secp256k1_gej *r) {
 #endif
 }
 
-static void secp256k1_gej_clear(secp256k1_gej *r) {
-    r->infinity = 0;
-    SECP256K1_CLEANSE(r->x);
-    SECP256K1_CLEANSE(r->y);
-    SECP256K1_CLEANSE(r->z);
-#ifdef VERIFY
-    secp256k1_fe_verify_init(&r->x);
-    secp256k1_fe_verify_init(&r->y);
-    secp256k1_fe_verify_init(&r->z);
-#endif
-}
-
 static void secp256k1_ge_clear(secp256k1_ge *r) {
     r->infinity = 0;
     SECP256K1_CLEANSE(r->x);
