@@ -1889,7 +1889,11 @@ void test_ge(void) {
     secp256k1_fe zfi2, zfi3;
 
     secp256k1_gej_set_infinity(&gej[0]);
-    secp256k1_ge_clear(&ge[0]);
+    memset(&ge[0], 0, sizeof(secp256k1_ge));
+#ifdef VERIFY
+    secp256k1_fe_verify_init(&ge[0].x);
+    secp256k1_fe_verify_init(&ge[0].y);
+#endif
     secp256k1_ge_set_gej_var(&ge[0], &gej[0]);
     for (i = 0; i < runs; i++) {
         int j;
