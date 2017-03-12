@@ -191,9 +191,6 @@ static void secp256k1_ecmult_gen_blind(secp256k1_ecmult_gen_context *ctx, const 
     /* Randomize the projection to defend against multiplier sidechannels. */
     secp256k1_gej_rescale(&ctx->initial, &s);
     SECP256K1_CLEANSE(s);
-#ifdef VERIFY
-    secp256k1_fe_verify_init(&s);
-#endif
     do {
         secp256k1_rfc6979_hmac_sha256_generate(&rng, nonce32, 32);
         secp256k1_scalar_set_b32(&b, nonce32, &retry);
