@@ -1,0 +1,572 @@
+9d560f992db26612ce2630b194aef5f44d63a530
+
+#!/bin/sh
+
+git rev-parse HEAD
+echo ""
+cat secptests.sh
+echo ""
+cat /proc/cpuinfo |grep "model name" |uniq -c
+echo ""
+make clean
+echo ""
+./configure --enable-benchmark
+echo ""
+make -j6
+echo ""
+./tests
+echo ""
+./exhaustive_tests
+echo ""
+./bench_internal
+echo ""
+./bench_sign
+echo ""
+./bench_verify
+echo ""
+
+make clean
+echo ""
+./configure --enable-benchmark --enable-endomorphism
+echo ""
+make -j6
+echo ""
+./tests
+echo ""
+./exhaustive_tests
+echo ""
+./bench_internal
+echo ""
+./bench_sign
+echo ""
+./bench_verify
+echo ""
+
+      1 model name	: Intel(R) Core(TM) i7-3930K CPU @ 3.20GHz
+
+/bin/sh ./config.status --recheck
+running CONFIG_SHELL=/bin/sh /bin/sh ./configure --enable-benchmark --no-create --no-recursion
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking how to print strings... printf
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-unknown-linux-gnu file names to x86_64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking whether make supports nested variables... (cached) yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for ar... /usr/bin/ar
+checking for ranlib... /usr/bin/ranlib
+checking for strip... /usr/bin/strip
+checking for gcc... gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking whether gcc understands -c and -o together... (cached) yes
+checking dependency style of gcc... (cached) gcc3
+checking how to run the C preprocessor... gcc -E
+checking for gcc option to accept ISO C89... (cached) none needed
+checking dependency style of gcc... gcc3
+checking if gcc supports -std=c89 -pedantic -Wall -Wextra -Wcast-align -Wnested-externs -Wshadow -Wstrict-prototypes -Wno-unused-function -Wno-long-long -Wno-overlength-strings... yes
+checking if gcc supports -fvisibility=hidden... yes
+checking for __int128... yes
+checking for __builtin_expect... yes
+checking native compiler: gcc... ok
+checking for x86_64 assembly availability... yes
+checking gmp.h usability... yes
+checking gmp.h presence... yes
+checking for gmp.h... yes
+checking for __gmpz_init in -lgmp... yes
+checking for CRYPTO... yes
+checking for main in -lcrypto... yes
+checking for EC functions in libcrypto... yes
+checking for javac... no
+checking jni headers... none
+checking whether byte ordering is bigendian... no
+configure: Using static precomputation: yes
+configure: Using assembly optimizations: x86_64
+configure: Using field implementation: 64bit
+configure: Using bignum implementation: gmp
+configure: Using scalar implementation: 64bit
+configure: Using endomorphism optimizations: no
+configure: Building for coverage analysis: no
+configure: Building ECDH module: no
+configure: Building ECDSA pubkey recovery module: no
+configure: Using jni: no
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+ /bin/sh ./config.status
+config.status: creating Makefile
+config.status: creating libsecp256k1.pc
+config.status: creating src/libsecp256k1-config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+test -z "gen_context src/ecmult_static_context.h src/java/org/bitcoin/*.class .stamp-java" || rm -f gen_context src/ecmult_static_context.h src/java/org/bitcoin/*.class .stamp-java
+test -z "libsecp256k1.la" || rm -f libsecp256k1.la
+rm -f ./so_locations
+rm -rf .libs _libs
+rm -rf src/.libs src/_libs
+rm -rf src/asm/.libs src/asm/_libs
+rm -rf src/java/.libs src/java/_libs
+test -z "" || rm -f 
+ rm -f bench_verify bench_sign bench_internal tests exhaustive_tests
+rm -f *.o
+rm -f src/*.o
+rm -f src/*.lo
+rm -f src/asm/*.o
+rm -f src/asm/*.lo
+rm -f src/java/*.o
+rm -f src/java/*.lo
+test -z "tests.log exhaustive_tests.log" || rm -f tests.log exhaustive_tests.log
+test -z "tests.trs exhaustive_tests.trs" || rm -f tests.trs exhaustive_tests.trs
+test -z "test-suite.log" || rm -f test-suite.log
+rm -f *.lo
+
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking how to print strings... printf
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-unknown-linux-gnu file names to x86_64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking whether make supports nested variables... (cached) yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for ar... /usr/bin/ar
+checking for ranlib... /usr/bin/ranlib
+checking for strip... /usr/bin/strip
+checking for gcc... gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking whether gcc understands -c and -o together... (cached) yes
+checking dependency style of gcc... (cached) gcc3
+checking how to run the C preprocessor... gcc -E
+checking for gcc option to accept ISO C89... (cached) none needed
+checking dependency style of gcc... gcc3
+checking if gcc supports -std=c89 -pedantic -Wall -Wextra -Wcast-align -Wnested-externs -Wshadow -Wstrict-prototypes -Wno-unused-function -Wno-long-long -Wno-overlength-strings... yes
+checking if gcc supports -fvisibility=hidden... yes
+checking for __int128... yes
+checking for __builtin_expect... yes
+checking native compiler: gcc... ok
+checking for x86_64 assembly availability... yes
+checking gmp.h usability... yes
+checking gmp.h presence... yes
+checking for gmp.h... yes
+checking for __gmpz_init in -lgmp... yes
+checking for CRYPTO... yes
+checking for main in -lcrypto... yes
+checking for EC functions in libcrypto... yes
+checking for javac... no
+checking jni headers... none
+checking whether byte ordering is bigendian... no
+configure: Using static precomputation: yes
+configure: Using assembly optimizations: x86_64
+configure: Using field implementation: 64bit
+configure: Using bignum implementation: gmp
+configure: Using scalar implementation: 64bit
+configure: Using endomorphism optimizations: no
+configure: Building for coverage analysis: no
+configure: Building ECDH module: no
+configure: Building ECDSA pubkey recovery module: no
+configure: Using jni: no
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating libsecp256k1.pc
+config.status: creating src/libsecp256k1-config.h
+config.status: src/libsecp256k1-config.h is unchanged
+config.status: executing depfiles commands
+config.status: executing libtool commands
+
+gcc -I. -g -O2 -Wall -Wextra -Wno-unused-function -c src/gen_context.c -o gen_context.o
+  CC       src/bench_verify.o
+  CC       src/exhaustive_tests-tests_exhaustive.o
+  CC       src/bench_sign.o
+gcc gen_context.o -o gen_context
+./gen_context
+  CC       src/libsecp256k1_la-secp256k1.lo
+  CC       src/bench_internal-bench_internal.o
+  CC       src/tests-tests.o
+  CCLD     exhaustive_tests
+  CCLD     bench_internal
+  CCLD     libsecp256k1.la
+  CCLD     bench_verify
+  CCLD     bench_sign
+  CCLD     tests
+
+test count = 64
+random seed = 9c6762634bfac0047d2318c3ecd91b6a
+random run = 1362ccd36c0f5a10d232d94e3a1190b9
+no problems found
+
+
+scalar_add: min 0.0126us / avg 0.0128us / max 0.0131us
+scalar_negate: min 0.00397us / avg 0.00419us / max 0.00441us
+scalar_sqr: min 0.0425us / avg 0.0452us / max 0.0487us
+scalar_mul: min 0.0338us / avg 0.0472us / max 0.0511us
+scalar_inverse: min 12.1us / avg 13.8us / max 14.5us
+scalar_inverse_var: min 0.530us / avg 2.35us / max 2.70us
+field_normalize: min 0.0112us / avg 0.0114us / max 0.0117us
+field_normalize_weak: min 0.00459us / avg 0.00485us / max 0.00503us
+field_sqr: min 0.0178us / avg 0.0210us / max 0.0235us
+field_mul: min 0.0141us / avg 0.0260us / max 0.0306us
+field_inverse: min 5.75us / avg 5.93us / max 6.08us
+field_inverse_var: min 2.71us / avg 2.85us / max 2.97us
+field_sqrt: min 5.70us / avg 5.84us / max 5.95us
+group_double_var: min 0.160us / avg 0.177us / max 0.184us
+group_add_var: min 0.398us / avg 0.411us / max 0.421us
+group_add_affine: min 0.367us / avg 0.374us / max 0.383us
+group_add_affine_var: min 0.295us / avg 0.299us / max 0.305us
+group_jacobi_var: min 0.455us / avg 0.473us / max 0.494us
+wnaf_const: min 0.191us / avg 0.203us / max 0.217us
+ecmult_wnaf: min 0.586us / avg 0.616us / max 0.640us
+hash_sha256: min 0.233us / avg 0.365us / max 0.401us
+hash_hmac_sha256: min 1.43us / avg 1.52us / max 1.57us
+hash_rfc6979_hmac_sha256: min 8.46us / avg 8.55us / max 8.73us
+context_verify: min 8287us / avg 8465us / max 8617us
+context_sign: min 32.7us / avg 41.8us / max 46.2us
+num_jacobi: min 0.147us / avg 0.159us / max 0.164us
+
+ecdsa_sign: min 57.2us / avg 57.8us / max 58.1us
+
+ecdsa_verify: min 76.1us / avg 76.7us / max 77.7us
+ecdsa_verify_openssl: min 461us / avg 464us / max 482us
+
+test -z "gen_context src/ecmult_static_context.h src/java/org/bitcoin/*.class .stamp-java" || rm -f gen_context src/ecmult_static_context.h src/java/org/bitcoin/*.class .stamp-java
+test -z "libsecp256k1.la" || rm -f libsecp256k1.la
+rm -f ./so_locations
+rm -rf .libs _libs
+rm -rf src/.libs src/_libs
+rm -rf src/asm/.libs src/asm/_libs
+rm -rf src/java/.libs src/java/_libs
+test -z "" || rm -f 
+ rm -f bench_verify bench_sign bench_internal tests exhaustive_tests
+rm -f *.o
+rm -f src/*.o
+rm -f src/*.lo
+rm -f src/asm/*.o
+rm -f src/asm/*.lo
+rm -f src/java/*.o
+rm -f src/java/*.lo
+test -z "tests.log exhaustive_tests.log" || rm -f tests.log exhaustive_tests.log
+test -z "tests.trs exhaustive_tests.trs" || rm -f tests.trs exhaustive_tests.trs
+test -z "test-suite.log" || rm -f test-suite.log
+rm -f *.lo
+
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking how to print strings... printf
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-unknown-linux-gnu file names to x86_64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking whether make supports nested variables... (cached) yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for ar... /usr/bin/ar
+checking for ranlib... /usr/bin/ranlib
+checking for strip... /usr/bin/strip
+checking for gcc... gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking whether gcc understands -c and -o together... (cached) yes
+checking dependency style of gcc... (cached) gcc3
+checking how to run the C preprocessor... gcc -E
+checking for gcc option to accept ISO C89... (cached) none needed
+checking dependency style of gcc... gcc3
+checking if gcc supports -std=c89 -pedantic -Wall -Wextra -Wcast-align -Wnested-externs -Wshadow -Wstrict-prototypes -Wno-unused-function -Wno-long-long -Wno-overlength-strings... yes
+checking if gcc supports -fvisibility=hidden... yes
+checking for __int128... yes
+checking for __builtin_expect... yes
+checking native compiler: gcc... ok
+checking for x86_64 assembly availability... yes
+checking gmp.h usability... yes
+checking gmp.h presence... yes
+checking for gmp.h... yes
+checking for __gmpz_init in -lgmp... yes
+checking for CRYPTO... yes
+checking for main in -lcrypto... yes
+checking for EC functions in libcrypto... yes
+checking for javac... no
+checking jni headers... none
+checking whether byte ordering is bigendian... no
+configure: Using static precomputation: yes
+configure: Using assembly optimizations: x86_64
+configure: Using field implementation: 64bit
+configure: Using bignum implementation: gmp
+configure: Using scalar implementation: 64bit
+configure: Using endomorphism optimizations: yes
+configure: Building for coverage analysis: no
+configure: Building ECDH module: no
+configure: Building ECDSA pubkey recovery module: no
+configure: Using jni: no
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating libsecp256k1.pc
+config.status: creating src/libsecp256k1-config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+
+gcc -I. -g -O2 -Wall -Wextra -Wno-unused-function -c src/gen_context.c -o gen_context.o
+  CC       src/bench_verify.o
+  CC       src/bench_sign.o
+  CC       src/exhaustive_tests-tests_exhaustive.o
+gcc gen_context.o -o gen_context
+./gen_context
+  CC       src/libsecp256k1_la-secp256k1.lo
+  CC       src/bench_internal-bench_internal.o
+  CC       src/tests-tests.o
+  CCLD     exhaustive_tests
+  CCLD     bench_internal
+  CCLD     libsecp256k1.la
+  CCLD     bench_verify
+  CCLD     bench_sign
+  CCLD     tests
+
+test count = 64
+random seed = bcdb35d5ce25a4e5d2534eeccd044d1d
+random run = 884c93febddf3a8798552726b652cc9e
+no problems found
+
+
+scalar_add: min 0.0128us / avg 0.0129us / max 0.0134us
+scalar_negate: min 0.00278us / avg 0.00398us / max 0.00428us
+scalar_sqr: min 0.0375us / avg 0.0438us / max 0.0477us
+scalar_mul: min 0.0441us / avg 0.0470us / max 0.0501us
+scalar_split: min 0.139us / avg 0.219us / max 0.244us
+scalar_inverse: min 12.4us / avg 13.5us / max 13.8us
+scalar_inverse_var: min 2.22us / avg 2.44us / max 2.63us
+field_normalize: min 0.0109us / avg 0.0112us / max 0.0118us
+field_normalize_weak: min 0.00267us / avg 0.00458us / max 0.00509us
+field_sqr: min 0.0142us / avg 0.0201us / max 0.0234us
+field_mul: min 0.0250us / avg 0.0271us / max 0.0294us
+field_inverse: min 5.77us / avg 5.83us / max 5.93us
+field_inverse_var: min 2.72us / avg 2.79us / max 2.89us
+field_sqrt: min 5.69us / avg 5.76us / max 5.94us
+group_double_var: min 0.162us / avg 0.175us / max 0.185us
+group_add_var: min 0.403us / avg 0.409us / max 0.418us
+group_add_affine: min 0.356us / avg 0.360us / max 0.366us
+group_add_affine_var: min 0.278us / avg 0.292us / max 0.303us
+group_jacobi_var: min 0.409us / avg 0.461us / max 0.501us
+wnaf_const: min 0.0200us / avg 0.100us / max 0.123us
+ecmult_wnaf: min 0.406us / avg 0.565us / max 0.635us
+hash_sha256: min 0.193us / avg 0.351us / max 0.379us
+hash_hmac_sha256: min 1.46us / avg 1.52us / max 1.60us
+hash_rfc6979_hmac_sha256: min 8.27us / avg 8.37us / max 8.53us
+context_verify: min 8102us / avg 8162us / max 8284us
+context_sign: min 39.7us / avg 41.5us / max 43.5us
+num_jacobi: min 0.147us / avg 0.158us / max 0.163us
+
+ecdsa_sign: min 57.0us / avg 57.2us / max 57.5us
+
+ecdsa_verify: min 54.8us / avg 55.1us / max 55.5us
+ecdsa_verify_openssl: min 461us / avg 462us / max 467us
+
